@@ -1,0 +1,14 @@
+<launch> 
+
+   <!-- start node -->
+   <arg name="nr" default="1"/> 
+   <group ns="$(eval 'turtle' + str(arg('nr')))">
+      <node name="turtle" pkg="turtlesim" type="turtlesim_node"/>
+   </group>
+
+   <!-- recursively start new node -->
+   <include file="$(find TurtleSim-tf)/launch/dynamic.launch" if="$(eval arg('nr') - 1 > 0)">
+       <arg name="nr" value="$(eval arg('nr')-1)"/>
+   </include>
+
+</launch>
