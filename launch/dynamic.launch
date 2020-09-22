@@ -4,6 +4,7 @@
    <arg name="nr" default="1"/> 
    <group ns="$(eval 'turtle' + str(arg('nr')))">
       <node name="turtle" pkg="turtlesim" type="turtlesim_node"/>
+        <param name="nth" value="$(eval str(arg('nr')))" />
    </group>
 
    <!-- recursively start new node -->
