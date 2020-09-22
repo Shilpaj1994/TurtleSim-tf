@@ -28,6 +28,9 @@ class Turtle:
     def __repr__(self):
         return 'Turtle Name: {}'.format(self.name)
 
+    def get_name(self):
+        return self.name
+
     def spawn(self, x, y, theta):
         """
         Function to spawn turtles in the Turtle-sim
