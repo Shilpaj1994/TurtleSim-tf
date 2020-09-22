@@ -55,4 +55,4 @@ if __name__ == '__main__':
         t.header.stamp = rospy.Time.now()
         br.sendTransform(t)
         rate.sleep()
-        
+
