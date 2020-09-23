@@ -5,14 +5,20 @@ import rospy
 import tf
 import math
 import random
+import rosnode
 from Turtle import *
+from std_msgs.msg import Int64
 
 
 class Frame:
     def __init__(self):
         rospy.init_node('spawner', anonymous=False)
 
-        rospy.loginfo("Node Created")
+        names = rosnode.get_node_names()
+        print(names)
+        # rospy.loginfo("Node Created: ", name)
+
+        self.pub = rospy.Publisher('/data', Int64, queue_size=1)
 
         # self.br = tf.TransformBroadcaster()
         #
@@ -24,12 +30,13 @@ class Frame:
         #
         # self.br = tf.TransformBroadcaster()
 
-        # param = rospy.get_param('nth')
-        # rospy.loginfo(str(param))
+        param = rospy.get_param('/par')
+        rospy.loginfo("Parameter Name: " + str(param))
         self.rate = rospy.Rate(10.0)
 
         while not rospy.is_shutdown():
             # self.dynamic_frame()
+            self.pub.publish(1)
             self.rate.sleep()
 
     def random_spawn(self):

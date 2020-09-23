@@ -1,19 +1,36 @@
 <launch> 
 
+	<!-- start node -->
+	<arg     name="num"    default="1"/>
+	<param   name="par"    value="$(eval arg('num')-1)"/>
+	
+	<group   ns="$(eval 'node' + str(arg('num')))">
+		<node    name="turtle"    pkg="turtlesim-tf"    type="add_frame.py"    output="screen"/>
+		<!--param   name="par"       value="$(eval arg('num')-1)"/-->
+	</group>
+
+	<!-- recursively start new node -->
+	<include    file="$(find turtlesim-tf)/launch/dynamic.launch"    if="$(eval arg('num') - 1 > 0)">
+		<arg    name="num"    value="$(eval arg('num')-1)"/>
+	</include>
+
+	<!--node pkg="turtlesim" name="sim1" type="turtlesim_node"/-->
+   
+</launch>
+
+
    <!-- start node -->
-   <arg name="nr" default="1"/> 
+   <!--arg name="nr" default="1"/> 
    <param  name="nth"    value="$(eval str(arg('nr')))" />
    
    <group ns="$(eval 'turtle' + str(arg('nr')))">
       <node   name="turtle" pkg="turtlesim-tf"      type="add_frame.py"/>
       
-   </group>
+   </group-->
 
-   <!-- recursively start new node -->
+   <!-- recursively start new node>
    <include file="$(find turtlesim-tf)/launch/dynamic.launch" if="$(eval arg('nr') - 1 > 0)">
        <arg name="nr" value="$(eval arg('nr')-1)"/>
-   </include>
+   </include-->
 
    <!--node pkg="turtlesim" name="sim1" type="turtlesim_node"/-->
-   
-</launch>
