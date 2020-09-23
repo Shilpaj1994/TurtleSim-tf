@@ -2,10 +2,11 @@
 
    <!-- start node -->
    <arg name="nr" default="1"/> 
+   <param  name="nth"    value="$(eval str(arg('nr')))" />
    
    <group ns="$(eval 'turtle' + str(arg('nr')))">
       <node   name="turtle" pkg="turtlesim-tf"      type="add_frame.py"/>
-      <param  name="nth"    value="$(eval str(arg('nr')))" />
+      
    </group>
 
    <!-- recursively start new node -->

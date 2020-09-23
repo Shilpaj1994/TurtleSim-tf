@@ -12,21 +12,24 @@ class Frame:
     def __init__(self):
         rospy.init_node('spawner', anonymous=False)
 
-        self.br = tf.TransformBroadcaster()
+        rospy.loginfo("Node Created")
 
-        self.x = 0.0
-        self.y = 0.0
-        self.theta = 0.0
+        # self.br = tf.TransformBroadcaster()
+        #
+        # self.x = 0.0
+        # self.y = 0.0
+        # self.theta = 0.0
+        #
+        # self.random_spawn()
+        #
+        # self.br = tf.TransformBroadcaster()
 
-        self.random_spawn()
-
-        self.br = tf.TransformBroadcaster()
-
-        print(rospy.get_param('turtle1/nth'))
+        # param = rospy.get_param('nth')
+        # rospy.loginfo(str(param))
         self.rate = rospy.Rate(10.0)
 
         while not rospy.is_shutdown():
-            self.dynamic_frame()
+            # self.dynamic_frame()
             self.rate.sleep()
 
     def random_spawn(self):
