@@ -30,8 +30,8 @@ class Frame:
         #
         # self.br = tf.TransformBroadcaster()
 
-        param = rospy.get_param('/par')
-        rospy.loginfo("Parameter Name: " + str(param))
+        # param = rospy.get_param('/par')
+        # rospy.loginfo("Parameter Name: " + str(param))
         self.rate = rospy.Rate(10.0)
 
         while not rospy.is_shutdown():
