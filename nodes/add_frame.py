@@ -24,12 +24,13 @@ class Frame:
         self.y = 0.0
         self.theta = 0.0
         self.rate = rospy.Rate(10.0)
+        self.turtle = None
 
         # Spawn turtles randomly
-        self.random_spawn()
+        self.random_spawn_test()
 
         # Initiate topic for each node
-        topic_name = '/Turtle' + number + '/tf'
+        topic_name = '/Turtle' + str(number) + '/tf'
         self.pub = rospy.Publisher(topic_name, Int64, queue_size=1)
 
         while not rospy.is_shutdown():
@@ -38,6 +39,15 @@ class Frame:
             self.rate.sleep()
 
     def random_spawn(self):
+        global number
+        self.turtle = Turtle(number)
+
+        self.rand_pos()
+
+        self.turtle.spawn(self.x, self.y, self.theta)
+        print(self.turtle.get_name())
+
+    def random_spawn_test(self):
         global number
         num = int(number)
         collection = []
@@ -59,21 +69,22 @@ class Frame:
         self.br.sendTransform((2.0 * math.sin(t), 2.0 * math.cos(t), 0.0),
                               (0.0, 0.0, 0.0, 1.0),
                               rospy.Time.now(),
-                              "carrot1",
-                              "turtle1")
+                              "turtle1", # self.turtle.get_name()
+                              "world")
 
 
 def main(value):
     global number
-    Frame()
     number = value
     print(number)
+    Frame()
 
 
 if __name__ == '__main__':
     try:
+        reset_sim()
         print("Here I am")
-        main(sys.argv[1])
+        main(int(sys.argv[1]))
         rospy.spin()
     except KeyboardInterrupt:
         exit()
