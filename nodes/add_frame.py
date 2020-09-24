@@ -10,15 +10,14 @@ from Turtle import *
 from std_msgs.msg import Int64
 
 
+number = '0'
+
+
 class Frame:
     def __init__(self):
-        rospy.init_node('spawner', anonymous=False)
-
-        names = rosnode.get_node_names()
-        print(names)
-        # rospy.loginfo("Node Created: ", name)
-
-        self.pub = rospy.Publisher('/data', Int64, queue_size=1)
+        global number
+        rospy.init_node('turtle', anonymous=False)
+        print("Node Initialized")
 
         # self.br = tf.TransformBroadcaster()
         #
@@ -30,13 +29,15 @@ class Frame:
         #
         # self.br = tf.TransformBroadcaster()
 
-        # param = rospy.get_param('/par')
-        # rospy.loginfo("Parameter Name: " + str(param))
+        topic_name = '/Turtle' + number + '/tf'
+        self.pub = rospy.Publisher(topic_name, Int64, queue_size=1)
+
         self.rate = rospy.Rate(10.0)
 
         while not rospy.is_shutdown():
             # self.dynamic_frame()
-            self.pub.publish(1)
+            print("ONNNNNNNNNN")
+            # self.pub.publish(1)
             self.rate.sleep()
 
     def random_spawn(self):
@@ -75,8 +76,17 @@ class Frame:
                               "turtle1")
 
 
+def main():
+    global number
+    Frame()
+    # number = value
+    print(number)
+
+
 if __name__ == '__main__':
     try:
-        turtle = Frame()
+        print("Here I am")
+        main()  # sys.argv[1]
+        rospy.spin()
     except KeyboardInterrupt:
         exit()
