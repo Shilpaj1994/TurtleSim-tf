@@ -38,8 +38,21 @@ class Node:
     #     self.name = name
 
 
+def launch_sim():
+    package = 'turtlesim'
+    executable = 'turtlesim_node'
+    node = roslaunch.core.Node(package, executable)
+
+    launch = roslaunch.scriptapi.ROSLaunch()
+    launch.start()
+
+    launch.launch(node)
+
+
 def main(number):
     rospy.init_node("Starter")
+
+    launch_sim()
 
     package = 'turtlesim-tf'
     executable = 'add_frame.py'
