@@ -38,8 +38,10 @@ class Frame:
             self.rate.sleep()
 
     def random_spawn(self):
+        global number
+        num = int(number)
         collection = []
-        for i in range(5):
+        for i in range(num):
             collection.append(Turtle(i))
 
             self.rand_pos()
