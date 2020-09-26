@@ -42,7 +42,7 @@ Following are the concepts used for this project:
   ```txt
   .
   ├── CMakeLists.txt
-├── docs                             # README dependencies
+  ├── docs                             # README dependencies
   │   ├── tf.png
   │   └── tree.txt
   ├── include
